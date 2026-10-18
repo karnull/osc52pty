@@ -1,7 +1,5 @@
 # osc52pty
 
-[![Build Status](https://travis-ci.com/roy2220/osc52pty.svg?branch=master)](https://travis-ci.com/roy2220/osc52pty) [![Coverage Status](https://codecov.io/gh/roy2220/osc52pty/branch/master/graph/badge.svg)](https://codecov.io/gh/roy2220/osc52pty)
-
 osc52pty recognizes OSC 52 sequences and pipes the content to `pbcopy`.
 
 If you're a Mac user who loves Terminal.app, you must be envious of iTerm2 users who
@@ -16,13 +14,13 @@ Although Terminal.app do NOT support OSC 52, here is the workaround for it.
 
 ## Installation
 
-Go toolchain is required.
+Go 1.26 or later is required.
 
 ```
-GO111MODULE=on go get github.com/roy2220/osc52pty
+go install github.com/karnull/osc52pty@latest
 ```
 
-Now you got the binary:
+Now you have the binary:
 
 ```
 ls -lh "$(go env GOPATH)/bin/osc52pty"
