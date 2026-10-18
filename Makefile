@@ -1,16 +1,16 @@
 override SHELL := /usr/bin/env bash -euxo pipefail
 override .DEFAULT_GOAL := all
 
-all: vet lint test
+all: vet staticcheck test
 
 vet: force
 	@go vet ./...
 
-lint: force
-	@go run golang.org/x/lint/golint -set_exit_status ./...
+staticcheck: force
+	@go tool staticcheck ./...
 
 test: force
-	@go test -coverprofile=coverage.txt -covermode=count ./...
+	@go test ./...
 
 .PHONY: force
 force:
