@@ -1,4 +1,4 @@
-module github.com/roy2220/osc52pty
+module github.com/karnull/osc52pty
 
 go 1.14
 
