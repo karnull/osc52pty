@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"io/ioutil"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -32,7 +31,7 @@ func TestShell(t *testing.T) {
 	if !assert.Equal(t, 0, exitCode) {
 		t.FailNow()
 	}
-	output, err := ioutil.ReadAll(stdoutR)
+	output, err := io.ReadAll(stdoutR)
 	if !assert.NoError(t, err) {
 		t.FailNow()
 	}
