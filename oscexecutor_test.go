@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/base64"
-	"io/ioutil"
 	"os"
 	"testing"
 
@@ -10,7 +9,7 @@ import (
 )
 
 func TestSetClipboard(t *testing.T) {
-	tempFile, err := ioutil.TempFile("", "osc52pty")
+	tempFile, err := os.CreateTemp("", "osc52pty")
 	if !assert.NoError(t, err) {
 		t.FailNow()
 	}
@@ -22,7 +21,7 @@ func TestSetClipboard(t *testing.T) {
 		t.FailNow()
 	}
 	t.Log(tempFile.Name())
-	data, err := ioutil.ReadFile(tempFile.Name())
+	data, err := os.ReadFile(tempFile.Name())
 	if !assert.NoError(t, err) {
 		t.FailNow()
 	}
