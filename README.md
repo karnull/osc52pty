@@ -14,6 +14,24 @@ Although Terminal.app do NOT support OSC 52, here is the workaround for it.
 
 ## Installation
 
+### Prebuilt binaries
+
+Each [release](https://github.com/karnull/osc52pty/releases) has a binary for
+Intel (`darwin-amd64`) and Apple silicon (`darwin-arm64`) Macs, with a
+`SHA256SUMS` file to check them against:
+
+```
+curl -fsSLO https://github.com/karnull/osc52pty/releases/download/v1.0.0/osc52pty-v1.0.0-darwin-arm64.tar.gz
+curl -fsSLO https://github.com/karnull/osc52pty/releases/download/v1.0.0/SHA256SUMS
+grep darwin-arm64 SHA256SUMS | shasum -a 256 -c
+tar -xzf osc52pty-v1.0.0-darwin-arm64.tar.gz
+```
+
+The binaries are not signed. If one was downloaded through a browser, macOS
+quarantines it; clear that with `xattr -d com.apple.quarantine osc52pty`.
+
+### From source
+
 Go 1.26 or later is required.
 
 ```
@@ -25,6 +43,15 @@ Now you have the binary:
 ```
 ls -lh "$(go env GOPATH)/bin/osc52pty"
 ```
+
+## Releasing
+
+`VERSION` holds the current version. To release, change it in a pull request,
+for example with `bump2version minor`. When that pull request is merged to
+`master`, `.github/workflows/release.yml` sees a version with no tag yet, runs
+the tests, builds both macOS binaries and publishes them as a release tagged
+`v<version>`. The release notes are the bullet points from the merged pull
+request's description. Merges that leave `VERSION` unchanged publish nothing.
 
 ## Usage
 
